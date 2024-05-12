@@ -3,83 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meu Mercado</title>
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+<title>Pimenta da Boa</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-    }
-    header {
-        background-color: white;
-        padding: 20px;
-    }
-    .carousel {
-        width: 100%;
-    }
-    .slick-slide img {
-        width: 100%;
-        height: auto;
-    }
-    nav {
-        background-color: red;
-        color: white;
-        text-align: center;
-    }
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-    nav ul li {
-        display: inline;
-        margin-right: 20px;
-    }
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .header {
+    background-color: transparent; /* Removendo a cor de fundo */
+    text-align: center;
+    padding: 20px;
+  }
+  .menu {
+    background-color: #ff0000; /* Vermelho */
+    text-align: center;
+    padding: 10px 0;
+    color: #ffffff; /* Branco */
+  }
+  .menu a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #ffffff; /* Branco */
+    font-weight: bold;
+  }
+  .carousel {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .carousel-item {
+    min-width: 100%;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
-
-<header>
-    <h1>Pimenta da boa 🌶️</h1> 
-</header>
-
-<nav>
-    <ul>
-        <li><a href="Index.html">Início</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="https://wa.me/5521994602324">Contatos</a></li>
-    </ul>
-</nav>
-
+<div class="header">
+  <h1>Pimenta da Boa</h1>
+</div>
 <div class="carousel">
-    <div><img src="Cartão.png" alt="Foto 1"></div>
-    <div><img src="ola.png" alt="Foto 2"></div>
-    <div><img src="variedade.png" alt="Foto 3"></div>
-    <!-- Adicione quantas imagens desejar -->
+  <div class="carousel-inner">
+    <div class="carousel-item">
+      <img src="ola.png" alt="Imagem 1">
+    </div>
+    <div class="carousel-item">
+      <img src="Cartão.png" alt="Imagem 2">
+    </div>
+    <div class="carousel-item">
+      <img src="variedade.png" alt="Imagem 3">
+    </div>
+  </div>
+</div>
+<div class="index.html">
+  <span>Início</span>
+  <a href="produtos.html">Produtos</a>
+  <a href="https://wa.me/5521994602324">Contatos</a>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.carousel').slick({
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000, // Altere conforme desejado
-            dots: true
-        });
-    });
-</script>
+  const carouselInner = document.querySelector('.carousel-inner');
+  const carouselItems = document.querySelectorAll('.carousel-item');
+  let currentIndex = 0;
+  const totalItems = carouselItems.length;
 
-<div class="contact-line">
-    <p>Entre em contato conosco: +55 21 994602324</p>
-</div>
+  function nextSlide() {
+    if (currentIndex < totalItems - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0;
+    }
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    const offset = -currentIndex * 100;
+    carouselInner.style.transform = `translateX(${offset}%)`;
+  }
+
+  setInterval(nextSlide, 3000); // Troca de slide a cada 3 segundos
+</script>
 </body>
 </html>
